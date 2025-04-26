@@ -17,7 +17,16 @@ Then open: http://localhost:3000
 
 Default ports are 3000 (frontend) and 8000 (backend).
 If you want to change them, edit the .env file.
-Then go to the correct port you set in .env for the frontend
+
+\* Then go to the correct port you set in .env for the frontend
+
+## ✨ Features
+- Service auto-detection (Docker containers)
+- Service status (Running, Crashed, Stopped)
+- Log streaming and filtering
+- Customizable alert keywords — monitor Internal Docker services
+- Easy Docker-based deployment
+- Self-hosted, lightweight — built with dev environments in mind
 
 ---
 ## Why LogForge?
