@@ -47,3 +47,9 @@ LogForge is optimized for ***developer environments***:
 Built for dev environments, not production — fast, simple, and focused. No complex setup. No huge monitoring stacks.
 
 Deploy in seconds with one simple command.
+
+## License
+
+You may use the software for **personal, non-commercial purposes** only. You cannot modify, redistribute, or use it for any **commercial purposes** unless you obtain a **commercial license**.
+
+See the [LICENSE](./LICENSE) file for full details on usage and restrictions.
