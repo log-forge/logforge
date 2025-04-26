@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  logforge-backend:
+    image: madanb13/logforge-backend:latest
+    container_name: logforge-backend
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+
+  logforge-frontend:
+    image: madanb13/logforge-frontend:latest
+    container_name: logforge-frontend
+    restart: always
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
