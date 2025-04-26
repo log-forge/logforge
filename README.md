@@ -23,14 +23,16 @@ Then go to the correct port you set in .env for the frontend
 ## Why LogForge?
 LogForge was built for developers who need a simple, lightweight way to monitor services during development — without setting up huge production systems.
 
-LogForge is optimized for developer environments:
+LogForge is optimized for ***developer environments***:
 
-No complicated configuration
+🔹 Instantly see which services are running, crashed, or stopped
 
-No heavy logging stacks
+🔹 View and filter logs per service
 
-Just fast, clear service visibility and crash detection while you build
+🔹 Get alerts when internal services show errors or warnings based on keywords you set
 
-Built for dev environments, not production — fast, simple, and focused. No complex setup. No huge monitoring stacks
+🔹 Deploy everything in seconds with a single command
 
-Deploy in seconds with one simple command
+Built for dev environments, not production — fast, simple, and focused. No complex setup. No huge monitoring stacks.
+
+Deploy in seconds with one simple command.
