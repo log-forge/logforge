@@ -1,0 +1,25 @@
+LogForge Internal-Use License v1.0 (Open Core)
+
+Copyright (c) 2025
+
+Permission is granted to any individual or organization (the "User") to use this software (the "Software") solely for:
+
+1. **Personal Use**: The User may use the Software on their own devices for personal, non-commercial purposes.
+2. **Internal Business Use**: The Software may be used by individuals who are employees or authorized personnel of a company or organization, strictly for that entity’s internal operations.
+
+This license is subject to the following **restrictions**:
+
+- **No Modification**: The Software may not be modified, reverse-engineered, or altered in any way.
+- **No Redistribution**: The Software may not be copied, shared, sublicensed, rehosted, or redistributed — in any form, whether modified or unmodified.
+- **No Commercialization**: The Software may not be sold, bundled, embedded, or included as part of a paid product or service.
+- **No Derivative Works**: The creation of derivative works, forks, or variants based on the Software is strictly prohibited.
+
+This license **does not permit**:
+- Public hosting or offering the Software as a service (SaaS)
+- Use of the Software in CI/CD pipelines to build, ship, or monitor other products
+- Forking, modifying, or reusing the Software codebase, even for private/internal use
+
+Violation of these terms will result in immediate termination of this license. Upon violation, all use of the Software must cease.
+---
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
