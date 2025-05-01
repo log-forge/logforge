@@ -4,7 +4,10 @@ Self-hosted service monitoring dashboard for Docker containers.
 
 Built for developers who want **simple** log visibility, service crash detection, and real-time alerts — without needing to stitch together multiple heavy tools.
 
-**Ditch the SSH+logsgrep cycle**
+Speed up dev cycles, fix faster. Ship faster.
+
+**Ditch the SSH+logs+grep cycle**
+
 
 ---
 
