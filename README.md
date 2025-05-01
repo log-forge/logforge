@@ -15,7 +15,7 @@ Speed up dev cycles, fix faster. Ship faster.
 
 ```bash
 git clone https://github.com/log-forge/logforge.git
-cd log-forge
+cd logforge
 docker compose up -d
 ```
 Then open: http://localhost:3000
