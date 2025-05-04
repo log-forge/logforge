@@ -14,9 +14,9 @@ Speed up dev cycles, fix faster. Ship faster.
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/log-forge/logforge.git
-cd logforge
-docker compose up -d
+git clone https://github.com/madanb13/log-forge.git
+cd log-forge
+docker compose up -d --build
 ```
 Then open: http://localhost:3000
 
