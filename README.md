@@ -73,6 +73,6 @@ Deploy in seconds with one simple command.
 
 ## License
 
-You may use the software for **personal, non-commercial purposes** only. You cannot modify, redistribute, or use it for any **commercial purposes** unless you obtain a **commercial license**.
+AGPLv3
 
 See the [LICENSE](./LICENSE) file for full details on usage and restrictions.
