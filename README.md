@@ -70,6 +70,31 @@ LogForge is optimized for ***developer environments***:
 Built for dev environments, not production — fast, simple, and focused. No complex setup. No huge monitoring stacks.
 
 Deploy in seconds with one simple command.
+## 🤝 Contributing
+
+We welcome contributions that make LogForge better for fast-moving dev teams.
+
+### What you can help with:
+- Improving alerting logic or performance
+- Enhancing container/service detection
+- Adding support for non-Docker environments
+- UI/UX polish
+- Bug fixes, docs, or typo cleanups
+
+### How to contribute:
+1. Fork the repo
+2. Create a new branch: `git checkout -b my-feature`
+3. Make your changes
+4. Commit and push: `git push origin my-feature`
+5. Open a pull request
+
+We review all PRs quickly.  
+If it’s useful to you, it’s likely useful to others too!
+
+---
+
+🙋‍♀️ **Have an idea or missing feature?**  
+Open a GitHub issue and tell us what you’d love to see.
 
 ## License
 
