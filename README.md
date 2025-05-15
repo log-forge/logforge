@@ -1,4 +1,4 @@
-# LogForge 🛠️
+# [LogForge 🛠️](https://log-forge.github.io/logforgeweb/)
 
 Self-hosted service monitoring dashboard for Docker containers.
 
