@@ -61,6 +61,7 @@ NOTIFIER_WEB_PORT="8085"
 - Service status (Running, Crashed, Stopped)
 - Log streaming and filtering
 - Customizable alert keywords — monitor Internal Docker services
+- Notification support for Email, Discord, Telegram, Slack and Gotify
 - Interactive terminal access per container
 - File system viewer to browse container files
 - Easy Docker-based deployment
