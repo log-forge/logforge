@@ -33,7 +33,7 @@ services:
 
   logforge-notifier:
     image: madanb13/logforge-notifier:latest
-    container_name: logforge-notifier
+    container_name: ${NOTIFIER_SERVICE_CONTAINER_NAME:-logforge-notifier}
     ports:
       - "${NOTIFIER_PLAIN_PORT:-8083}:8083"
       - "${NOTIFIER_WEB_PORT:-8085}:8085"
