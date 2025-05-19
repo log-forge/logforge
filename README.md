@@ -61,12 +61,15 @@ NOTIFIER_WEB_PORT="8085"
 - Service status (Running, Crashed, Stopped)
 - Log streaming and filtering
 - Customizable alert keywords — monitor Internal Docker services
+- Interactive terminal access per container
+- File system viewer to browse container files
 - Easy Docker-based deployment
 - Self-hosted, lightweight — built with dev environments in mind
 
 ---
 ## Why LogForge?
 LogForge was built for developers who need a simple, lightweight way to monitor services during development — without setting up huge production systems.
+See how we [compare](https://log-forge.github.io/logforgeweb/#compare) with other popular tools.
 
 LogForge is optimized for ***developer environments***:
 
@@ -81,6 +84,10 @@ LogForge is optimized for ***developer environments***:
 Built for dev environments, not production — fast, simple, and focused. No complex setup. No huge monitoring stacks.
 
 Deploy in seconds with one simple command.
+
+### Need LogForge for your team?
+We got you  — see *[Premium.](https://log-forge.github.io/logforgeweb/#premium)*
+
 ## 🤝 Contributing
 
 We welcome contributions that make LogForge better for fast-moving dev teams.
@@ -91,13 +98,6 @@ We welcome contributions that make LogForge better for fast-moving dev teams.
 - Adding support for non-Docker environments
 - UI/UX polish
 - Bug fixes, docs, or typo cleanups
-
-### How to contribute:
-1. Fork the repo
-2. Create a new branch: `git checkout -b my-feature`
-3. Make your changes
-4. Commit and push: `git push origin my-feature`
-5. Open a pull request
 
 We review all PRs quickly.  
 If it’s useful to you, it’s likely useful to others too!
