@@ -24,8 +24,8 @@ docker compose up -d
 ```
 Then open: http://localhost:3000
 
-Default container names are logforge-frontend and logforge-backend.
-Default ports are 3000 (frontend) and 8000 (backend).
+Default container names are logforge-frontend, logforge-backend and logforge-notifier.
+Default ports are 3000 (frontend), 8000 (backend) and 8083/8085 (notifier).
 If you want to change them, edit the .env file.
 
 ```
