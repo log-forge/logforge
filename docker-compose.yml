@@ -6,6 +6,8 @@ services:
     container_name: ${BACKEND_SERVICE_CONTAINER_NAME:-logforge-backend}
     environment:
       PORT: "${BACKEND_SERVICE_PORT:-8000}"
+      NOTIFIER_SERVICE_CONTAINER_NAME: "${NOTIFIER_SERVICE_CONTAINER_NAME:-logforge-notifier}"
+      NOTIFIER_PLAIN_PORT: "${NOTIFIER_PLAIN_PORT:-8083}"
     networks:
       - logforge-network
     volumes:
@@ -21,6 +23,7 @@ services:
       VITE_BACKEND_SERVICE_HOST: "http://${BACKEND_SERVICE_CONTAINER_NAME:-logforge-backend}"
       VITE_BACKEND_SERVICE_PORT: "${BACKEND_SERVICE_PORT:-8000}"
       VITE_EXPOSED_BACKEND_PORT: "${EXPOSED_BACKEND_PORT:-8000}"
+      VITE_NOTIFIER_PORT: "${NOTIFIER_WEB_PORT:-8085}"
     ports:
       - "${EXPOSED_FRONTEND_PORT:-3000}:${FRONTEND_SERVICE_PORT:-3000}"
     networks:
@@ -28,6 +31,22 @@ services:
     depends_on:
       - logforge-backend
 
+  logforge-notifier:
+    image: madanb13/logforge-notifier:latest
+    container_name: logforge-notifier
+    ports:
+      - "${NOTIFIER_PLAIN_PORT:-8083}:8083"
+      - "${NOTIFIER_WEB_PORT:-8085}:8085"
+    volumes:
+      - logforge_notifier_data:/app/data
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - logforge-network
+    restart: unless-stopped
+
 networks:
   logforge-network:
     driver: bridge
+
+volumes:
+  logforge_notifier_data:
