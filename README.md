@@ -1,6 +1,6 @@
 # [LogForge 🛠️](https://log-forge.github.io/logforgeweb/)
 
-Self-hosted service monitoring dashboard for Docker containers.
+Self-hosted service monitoring dashboard for Docker containers, with notifications.
 
 Built for developers who want **simple** log visibility, service crash detection, and real-time alerts — without needing to stitch together multiple heavy tools.
 <p align="center">
