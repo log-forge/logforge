@@ -31,20 +31,27 @@ If you want to change them, edit the .env file.
 ```
 # Sets the name for the container that will run the backend service.
 # This name is used to identify the container
-BACKEND_SERVICE_CONTAINER_NAME=logforge-backend
+BACKEND_SERVICE_CONTAINER_NAME="logforge-backend"
 # Specifies the port number the backend application inside the container listens on for incoming connections.
-BACKEND_SERVICE_PORT=8000
+BACKEND_SERVICE_PORT="8000"
 # Defines the port number on your host machine (your computer) that will forward traffic to the BACKEND_SERVICE_PORT inside the container.
 # In this case, accessing http://localhost:8000 on your machine will connect to port 8000 inside the backend container.
-EXPOSED_BACKEND_PORT=8000
+EXPOSED_BACKEND_PORT="8000"
 
 # Sets the name for the container running the frontend service.
-FRONTEND_SERVICE_CONTAINER_NAME=logforge-frontend
+FRONTEND_SERVICE_CONTAINER_NAME="logforge-frontend"
 # Specifies the port number that the frontend application (the web server) listens on inside its container.
-FRONTEND_SERVICE_PORT=3000
+FRONTEND_SERVICE_PORT="3000"
 # Defines the port number on your host machine that maps to the FRONTEND_SERVICE_PORT inside the container.
 # Accessing http://localhost:3000 on your machine will connect to port 3000 inside the frontend container.
-EXPOSED_FRONTEND_PORT=3000
+EXPOSED_FRONTEND_PORT="3000"
+
+# Sets the naem fo rthe container running the notifier service
+NOTIFIER_SERVICE_CONTAINER="logforge-notifier"
+# Specifies the port number the notficaiton service uses to send notfications
+NOTIFIER_PLAIN_PORT="8083"
+# Defines the port number the norfication service uses for the web UI
+NOTIFIER_WEB_PORT="8085"
 ```
 
 \* Then go to the correct port you set in .env for the frontend
