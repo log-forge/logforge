@@ -46,12 +46,15 @@ FRONTEND_SERVICE_PORT="3000"
 # Accessing http://localhost:3000 on your machine will connect to port 3000 inside the frontend container.
 EXPOSED_FRONTEND_PORT="3000"
 
-# Sets the naem fo rthe container running the notifier service
+# Sets the name for the container running the notifier service
 NOTIFIER_SERVICE_CONTAINER="logforge-notifier"
 # Specifies the port number the notficaiton service uses to send notfications
 NOTIFIER_PLAIN_PORT="8083"
 # Defines the port number the norfication service uses for the web UI
 NOTIFIER_WEB_PORT="8085"
+
+# Sets the name for rhe container running the auto-update service
+AUTOUPDATE_SERVICE_NAME="logforge-autoupdate"
 ```
 
 \* Then go to the correct port you set in .env for the frontend
