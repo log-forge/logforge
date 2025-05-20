@@ -44,6 +44,14 @@ services:
       - logforge-network
     restart: unless-stopped
 
+  logforge-autoupdate:
+    image: madanb13/logforge-autoupdate:latest
+    container_name: ${AUTOUPDATE_SERVICE_NAME:-logforge-autoupdate}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 networks:
   logforge-network:
     driver: bridge
