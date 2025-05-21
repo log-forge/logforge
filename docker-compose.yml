@@ -15,7 +15,8 @@ services:
     restart: always
     ports:
       - "${EXPOSED_BACKEND_PORT:-8000}:${BACKEND_SERVICE_PORT:-8000}"
-
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
   logforge-frontend:
     image: madanb13/logforge-frontend:latest
     container_name: ${FRONTEND_SERVICE_CONTAINER_NAME:-logforge-frontend}
@@ -30,7 +31,8 @@ services:
       - logforge-network
     depends_on:
       - logforge-backend
-
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
   logforge-notifier:
     image: madanb13/logforge-notifier:latest
     container_name: ${NOTIFIER_SERVICE_CONTAINER_NAME:-logforge-notifier}
@@ -43,7 +45,8 @@ services:
     networks:
       - logforge-network
     restart: unless-stopped
-
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
   logforge-autoupdate:
     image: madanb13/logforge-autoupdate:latest
     container_name: ${AUTOUPDATE_SERVICE_NAME:-logforge-autoupdate}
@@ -51,7 +54,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     labels:
-      - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
 networks:
   logforge-network:
     driver: bridge
