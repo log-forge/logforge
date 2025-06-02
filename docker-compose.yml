@@ -59,7 +59,6 @@ services:
 networks:
   logforge-network:
     driver: bridge
-
 volumes:
   logforge_notifier_data:
   logforge_core_data:
