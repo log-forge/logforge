@@ -12,7 +12,7 @@ services:
       - logforge-network
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - logforge_core_data:/app/app/core/data
+      - logforge_core_data:/app/core/data
     restart: always
     ports:
       - "${EXPOSED_BACKEND_PORT:-8000}:${BACKEND_SERVICE_PORT:-8000}"
