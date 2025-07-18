@@ -14,7 +14,7 @@ Speed up dev cycles, fix faster. Ship faster.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start - v1.0.2
 
 ```bash
 git clone https://github.com/log-forge/logforge.git
@@ -61,9 +61,12 @@ AUTOUPDATE_SERVICE_NAME="logforge-autoupdate"
 ## ✨ Features
 - Service auto-detection (Docker containers)
 - Service status (Running, Crashed, Stopped)
+- Grouping — Organize containers into logical groups for easy monitoring
+- Per-container monitoring toggle — Choose which containers to monitor or ignore
+- Interval check control — Set monitoring check intervals: 10s, 30s, 1min, 5min, 10min, 30min
 - Log streaming and filtering
 - Customizable alert keywords — monitor Internal Docker services
-- Notification support for Email, Discord, Telegram, Slack and Gotify
+- Notification support for Email, Discord, Telegram, Slack and Gotify + more
 - Interactive terminal access per container
 - File system viewer to browse container files
 - Easy Docker-based deployment
@@ -91,6 +94,15 @@ Deploy in seconds with one simple command.
 ### Need LogForge for your team?
 We got you  — see *[Premium.](https://log-forge.github.io/logforgeweb/#premium)*
 
+- Remote server monitoring
+
+- Docker Swarm support
+
+- Kubernetes support
+
+- Role-based Access Control (RBAC)
+
+- Centralized team management
 ## 🤝 Contributing
 
 We welcome contributions that make LogForge better for fast-moving dev teams.
