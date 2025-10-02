@@ -1,45 +1,37 @@
-version: "3.9"
-
 services:
   logforge-backend:
-    image: madanb13/logforge-backend:latest
-    container_name: ${BACKEND_SERVICE_CONTAINER_NAME:-logforge-backend}
-    environment:
-      PORT: "${BACKEND_SERVICE_PORT:-8000}"
-      NOTIFIER_SERVICE_CONTAINER_NAME: "${NOTIFIER_SERVICE_CONTAINER_NAME:-logforge-notifier}"
-      NOTIFIER_PLAIN_PORT: "${NOTIFIER_PLAIN_PORT:-8083}"
+    image: madanb13/logforge-backend:v2.0.0
+    container_name: ${LOGFORGE_BACKEND_CONTAINER_NAME:-logforge-backend}
     networks:
-      - logforge-network
+      - logforge-network 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - logforge_core_data:/app/app/core/data
-    restart: always
-    ports:
-      - "${EXPOSED_BACKEND_PORT:-8000}:${BACKEND_SERVICE_PORT:-8000}"
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=${AUTO_UPDATE:-true}"
+
   logforge-frontend:
-    image: madanb13/logforge-frontend:latest
-    container_name: ${FRONTEND_SERVICE_CONTAINER_NAME:-logforge-frontend}
+    image: madanb13/logforge-frontend:v2.0.0
+    container_name: ${LOGFORGE_FRONTEND_CONTAINER_NAME:-logforge-frontend}
     environment:
-      VITE_BACKEND_SERVICE_HOST: "http://${BACKEND_SERVICE_CONTAINER_NAME:-logforge-backend}"
-      VITE_BACKEND_SERVICE_PORT: "${BACKEND_SERVICE_PORT:-8000}"
-      VITE_EXPOSED_BACKEND_PORT: "${EXPOSED_BACKEND_PORT:-8000}"
-      VITE_NOTIFIER_PORT: "${NOTIFIER_WEB_PORT:-8085}"
+    - VITE_NOTIFIER_PORT=${NOTIFIER_WEB_PORT}
+    - VITE_ALERT_ENGINE_PORT=${ALERT_ENGINE_FRONTEND_PORT}
     ports:
-      - "${EXPOSED_FRONTEND_PORT:-3000}:${FRONTEND_SERVICE_PORT:-3000}"
+      - "${LOGFORGE_FRONTEND_PORT:-3008}:3000"
     networks:
       - logforge-network
+    restart: unless-stopped
     depends_on:
       - logforge-backend
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=${AUTO_UPDATE:-true}"
+
   logforge-notifier:
-    image: madanb13/logforge-notifier:latest
+    image: madanb13/logforge-notifier:v2.0.0
     container_name: ${NOTIFIER_SERVICE_CONTAINER_NAME:-logforge-notifier}
     ports:
-      - "${NOTIFIER_PLAIN_PORT:-8083}:8083"
-      - "${NOTIFIER_WEB_PORT:-8085}:8085"
+      - "${NOTIFIER_WEB_PORT:-8087}:8085"
     volumes:
       - logforge_notifier_data:/app/data
       - /etc/localtime:/etc/localtime:ro
@@ -47,7 +39,8 @@ services:
       - logforge-network
     restart: unless-stopped
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=${AUTO_UPDATE:-true}"
+
   logforge-autoupdate:
     image: madanb13/logforge-autoupdate:latest
     container_name: ${AUTOUPDATE_SERVICE_NAME:-logforge-autoupdate}
@@ -55,10 +48,50 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=${AUTO_UPDATE:-true}"
+
+  alert-engine-backend:
+    container_name: ${ALERT_ENGINE_BACKEND_CONTAINER_NAME:-logforge-alert-backend}
+    image: madanb13/logforge-alert-backend:v2.0.0
+    volumes:
+      - ./logs:/app/logs
+      - logforge_alert_engine_data:/app/data
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=${AUTO_UPDATE:-true}"
+    healthcheck:
+      test: ["CMD", "/app/alert_engine", "--selfcheck"]
+
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - logforge-network
+    depends_on:
+      - logforge-backend
+      - logforge-notifier
+
+  alert-engine-frontend:
+    container_name: ${ALERT_ENGINE_FRONTEND_CONTAINER_NAME:-logforge-alert-frontend}
+    image: madanb13/logforge-alert-frontend:v2.0.0
+    ports:
+      - "${ALERT_ENGINE_FRONTEND_PORT:-3033}:3033"
+    environment:
+    - ALERT_ENGINE_FRONTEND_PORT=${ALERT_ENGINE_FRONTEND_PORT:-3033}
+    depends_on:
+      alert-engine-backend:
+        condition: service_healthy
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=${AUTO_UPDATE:-true}"
+    networks:
+      - logforge-network
+
 networks:
   logforge-network:
     driver: bridge
 volumes:
   logforge_notifier_data:
   logforge_core_data:
+  logforge_alert_engine_data:
