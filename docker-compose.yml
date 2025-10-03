@@ -54,7 +54,6 @@ services:
     container_name: ${ALERT_ENGINE_BACKEND_CONTAINER_NAME:-logforge-alert-backend}
     image: madanb13/logforge-alert-backend:v2.0.0
     volumes:
-      - ./logs:/app/logs
       - logforge_alert_engine_data:/app/data
     restart: unless-stopped
     labels:
