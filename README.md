@@ -81,7 +81,7 @@ Rules, notifications, and automation. All in the browser. Configure everything i
 Alert Engine turns signals into action: define rules for logs, metrics, and container events, then notify your channels or remediate safely with restart, stop, kill, start, or scripts. Built‑in cooldowns, backoff, rate limits, and verification delays keep automation under control.
 ## Why LogForge Unicron?
 
-LogForge Unicron is built for developers, small teams, and self-hosters who
+LogForge Unicron is built for developers, small teams, Enterprise and self-hosters who
 want Docker monitoring without a heavy observability stack. Instead of jumping
 between SSH sessions, ad hoc log searches, and manual container checks, you get
 container monitoring, limited remote Docker monitoring, log ingestion, metrics
