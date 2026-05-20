@@ -1,152 +1,235 @@
-# [LogForge 🛠️](https://log-forge.github.io/logforgeweb/)
-
+# LogForge Unicron
 Self-hosted monitoring, alerting and remediation for Docker containers. Live logs, rules-based alerts, and safe automation — no heavy stack to stitch together.
-
-Built for developers who want clear visibility, fast incident detection, and guardrailed remediation.
-<p align="center">
-  <img src="https://raw.githubusercontent.com/log-forge/logforgeweb/main/assets/logforge-overview.gif" alt="LogForge Overview">
-</p>
 
 Visibility that acts: alerts and safe auto-fix.
 
 **Ditch the SSH+logs+grep cycle**
 
----
+Learn more on the [LogForge website](https://www.logforge.dev/).
 
-## 🚀 Quick Start - v2.0.1
+## Quick Start - v3.0
 
-```bash
+Clone the repository, enter it, then start Unicron from the published Docker Hub
+images:
+
+```sh
 git clone https://github.com/log-forge/logforge.git
 cd logforge
-docker compose up -d --build
-```
-Then open: http://localhost:3008
-
-Default container names are logforge-frontend, logforge-backend, logforge-alert-backend, logforge-alert-frontend, logforge-autoupdate and logforge-notifier.
-Default ports are 3008 (logforge-core frontend), 8087 (logforge-notifier) and 3033 (logforge-alertengine).
-If you want to change them, edit the `.env` file.
-
-```
-# Container names (change names here)
-LOGFORGE_BACKEND_CONTAINER_NAME=logforge-backend
-LOGFORGE_FRONTEND_CONTAINER_NAME=logforge-frontend
-ALERT_ENGINE_BACKEND_CONTAINER_NAME=logforge-alert-backend
-ALERT_ENGINE_FRONTEND_CONTAINER_NAME=logforge-alert-frontend
-AUTOUPDATE_SERVICE_NAME=logforge-autoupdate
-NOTIFIER_SERVICE_CONTAINER_NAME=logforge-notifier
-
-# Host ports exposed by default (Select what ports the UI open to on your machine)
-LOGFORGE_FRONTEND_PORT=3008
-NOTIFIER_WEB_PORT=8087
-ALERT_ENGINE_FRONTEND_PORT=3033
-
-#auto-update, if you want to disable auto-updates, change to "false"
-AUTO_UPDATE=true
+docker compose pull
+docker compose up -d
+docker compose ps
 ```
 
-Then go to the correct port you set in .env for the frontend (`LOGFORGE_FRONTEND_PORT`)
+Open:
 
-\* Note: We **strongly** suggest you leave `AUTO_UPDATE` as `true`
+```text
+https://localhost:8444/unicron
+```
+## Applying Configuration Changes
 
-## ✨ Features
-- Service auto-detection (Docker containers)
-- Service status (Running, Crashed, Stopped)
-- Grouping — Organize containers into logical groups for easy monitoring
-- Per-container monitoring toggle — Choose which containers to monitor or ignore
-- Log streaming and filtering
-- Customizable alert keywords — monitor Internal Docker services
-- Notification support for Email, Discord, Telegram, Slack and Gotify + more
-- Interactive terminal access per container
-- File system viewer to browse container files
-- Easy Docker-based deployment
-- One‑click Rule Templates: Ready‑made rules for stability, performance, logs, and security — customize in seconds.
-- Real‑Time Alerts: Live updates flow into the UI instantly (no refresh needed).
-- Safe Auto‑Remediation: Restart/stop/kill/start/run scripts with built‑in cooldowns, backoff, and rate limits.
-- Multi‑Step Actions: Chain actions with optional delays (e.g., notify, then restart).
-- Scoped Rules: Target all containers, specific ones, or groups for precise control.
-- Alert History & Acknowledgement: Track past alerts and hide acknowledged ones until new activity.
-- Noise Controls: Case sensitivity, AND/OR keyword matching, and ignore lists to reduce false alarms.
-- Duplicate Rule Protection: Warns when a new rule would overlap an existing one.
-- Script Actions (Validated): Run container scripts for fixes; built‑in checks help prevent misfires.
-- Test Notifications: Send a test alert from the UI to verify delivery in seconds.
-- Health & Self‑Checks: Built‑in liveness/health endpoints keep the system trustworthy.
-- Privacy by Design: Fully self‑hosted; your logs and alerts stay in your environment.
+If you want to change Unicron settings, edit the `.env` file with the values you
+want:
+
+```env
+# Host ports exposed by Unicron
+UNICRON_APP_PORT=8444
+UNICRON_AGENT_MTLS_PORT=9443
+
+# Local admin account
+CENTRAL_ADMIN_USERNAME=admin
+CENTRAL_ADMIN_PASSWORD=
+CENTRAL_ADMIN_RECOVERY_OVERRIDE=false
+```
+
+Then recreate Unicron so Docker Compose reads the updated values:
+
+```sh
+docker compose up -d
+docker compose ps
+```
+
+Then open Unicron on the port you set with `UNICRON_APP_PORT`:
+
+```text
+https://localhost:${UNICRON_APP_PORT}/unicron
+```
+
+## Features
+
+- Free self-hosted Docker monitoring for local containers, with limited remote
+  Docker monitoring through Unicron-agent.
+- Unicron-agent enrollment for remote Docker hosts within free-version limits.
+- Container health, status, logs, and metrics in one UI.
+- Log and metrics ingestion with storage for review, troubleshooting, and alert
+  rules within free-version limits.
+- Custom rules for logs, metrics, and container events.
+- Ready-made rule templates for stability, performance, logs, and security.
+- Real-time alerts, alert history, acknowledgement, and delivery tracking.
+- Notifications through Email, Slack, Teams, Discord, Telegram, Gotify, and
+  webhooks.
+- Safe automation and remediation: restart, stop, start, kill, or run scripts
+  with cooldown, rate-limit, and backoff style controls.
+- Secure admin access with local authentication and session protection.
+- mTLS-protected agent enrollment and agent traffic.
+- Encrypted sensitive configuration and redaction patterns where Unicron
+  handles credentials.
+- Self-hosted privacy, so Docker monitoring data stays in your environment.
 
 # Alert Engine
 Rules, notifications, and automation. All in the browser. Configure everything in the UI.
 
 Alert Engine turns signals into action: define rules for logs, metrics, and container events, then notify your channels or remediate safely with restart, stop, kill, start, or scripts. Built‑in cooldowns, backoff, rate limits, and verification delays keep automation under control.
+## Why LogForge Unicron?
 
-### ✨ Features
-- Fully UI-driven. No complex YAML. No scripting.
-- One‑click Rule Templates: Stability, performance, logs, and security — customize in seconds.
-- Triggers you control: Keywords, container events (start/stop/crash), and performance thresholds over time.
-- Timelines: “If N times in M minutes” or “sustained for X minutes” — reduce noise, catch real problems.
-- Safe auto‑remediation: Restart/stop/kill/start/run script with verification delays and guardrails.
-- Scoped rules: Target all containers, specific ones, or groups for precise control.
-- Real‑time updates: Alerts and container changes stream live into the UI.
-- Acknowledge & history: Track what happened; hide acknowledged alerts until new activity.
-- Test notifications: Verify delivery from the UI in seconds.
-- Duplicate protection: Warns when a new rule would overlap an existing one.
-- Alert History & Stats, Get graphs and timeline events
-  
-## Why LogForge?
-LogForge is built for modern teams running Docker — from local development to production environments. Start with simple, self‑hosted visibility and grow into rules‑based alerting and safe automation. Real‑time updates stream into the UI, notifications go to your channels, and guardrails that prevent runaway loops in production.
+LogForge Unicron is built for developers, small teams, and self-hosters who
+want Docker monitoring without a heavy observability stack. Instead of jumping
+between SSH sessions, ad hoc log searches, and manual container checks, you get
+container monitoring, limited remote Docker monitoring, log ingestion, metrics
+storage, alerting, safe automation, and guarded remediation in one self-hosted
+product.
 
+Stored logs and metrics make it easier to investigate incidents, review trends,
+and tune custom rules after the moment has passed. Real-time alerts,
+notifications, acknowledgement, and delivery tracking help teams detect issues
+faster, while remediation actions help close the loop with less manual
+follow-up.
 
-
-From local dev to production, without heavy tooling.
-
-🔹 See at a glance which services are running, crashed, or stopped.
-
-🔹 View and filter logs per container to spot issues fast.
-
-🔹 Get real‑time alerts based on rules you set and ready‑made rule templates.
-
-🔹 Deploy in seconds with Docker Compose and keep everything self‑hosted.
-
-🔹 See how we [compare](https://log-forge.github.io/logforgeweb/#compare) with other tools
-
-Built for devs/teams — fast, simple, and focused. No complex setup. No huge monitoring stacks.
-
-Deploy in seconds with one simple command.
+Secure admin access, mTLS-protected Unicron-agent traffic, encrypted sensitive
+configuration, and self-hosted deployment keep remote visibility practical
+without giving up control of Docker monitoring data.
 
 ### Need LogForge for your team?
-We got you  — see *[Premium.](https://log-forge.github.io/logforgeweb/#premium)*
 
-- Remote server monitoring
-  
-- Enterprise Grade tooling
+We got you — see [Premium](https://www.logforge.dev/#premium).
 
+- Remove remote monitoring limits
+- Enterprise-grade tooling
 - Docker Swarm support
-
 - Kubernetes support
-
 - Role-based Access Control (RBAC)
-
 - Centralized team management
+- Remove/configure 7 day logs/metrics retention period
+- Local AI, connect your AI models to LogForge Unicron and allow for it to fix containers, respond to alerts, create reports. Configurable scoped access to logs/metrics/alerts/containers/hosts and notfications
 
-## Source‑Available (Core)
-The [LogForge Core](https://github.com/log-forge/logforge-core) backend interfaces directly with the Docker socket (`/var/run/docker.sock`). For transparency and safety, Core is source‑available so you can review exactly what runs with that level of access.
+## Remote Monitoring with Unicron-agent
 
-\* Note: `logforge-autoupdate` also uses the socket, it is just [watchtower](https://github.com/containrrr/watchtower) with custom scheduling settings.
+Unicron does not create access to remote devices by itself. To monitor a remote
+Docker host, you must already have SSH/admin access or another working way to
+run Docker commands on that host.
 
-Non‑Core components (Alert Engine, Notifier, and other tools) are proprietary/restricted. See LICENSING.md for details.
-## 🤝 Contributing
+The remote host must run Docker and must be able to reach Unicron's published
+mTLS endpoint on `UNICRON_AGENT_MTLS_PORT`. In Unicron, generate the
+Unicron-agent enrollment command, then copy and run that command on the remote
+host.
 
-We welcome contributions that make LogForge better.
+`localhost` only works for agents running on the same machine as Unicron. For
+remote hosts, use a Unicron address that the remote host can reach in the
+enrollment flow.
 
-### What you can help with:
-- Enhancing UI experience
-- UI/UX polish
-- Bug fixes, docs, or typo cleanups
+## Admin Account and Recovery
 
----
+`CENTRAL_ADMIN_PASSWORD=` is blank by default. On first boot, `central/auth`
+generates a random admin password, logs it once, and requires a password change
+after sign-in.
 
-🙋‍♀️ **Have an idea or missing feature?**  
-Open a GitHub issue and tell us what you’d love to see.
+Set `CENTRAL_ADMIN_PASSWORD` only when you want a fixed first-boot password or
+when using recovery mode. After the admin account exists, normal restarts keep
+the same durable auth database and preserve the existing credential when
+`CENTRAL_ADMIN_RECOVERY_OVERRIDE=false`.
 
-If it’s useful to you, it’s likely useful to others too!
-## License
+`CENTRAL_ADMIN_RECOVERY_OVERRIDE` accepts only `true` or `false`. Any other value
+is invalid.
 
-See the [LICENSE](./LICENSE) file for full details on usage and restrictions.
+The admin username is part of the durable auth database. After the account
+exists, changing `CENTRAL_ADMIN_USERNAME` without recovery mode is treated as a
+configuration error. Restore the existing username or use the recovery flow
+below.
+
+Changing `CENTRAL_ADMIN_PASSWORD` while
+`CENTRAL_ADMIN_RECOVERY_OVERRIDE=false` does not rotate the existing password.
+This protects a running deployment from accidental credential replacement.
+
+To recover or rotate the local admin credential:
+
+1. Set `CENTRAL_ADMIN_USERNAME` to the desired local admin username.
+2. Set `CENTRAL_ADMIN_PASSWORD` to the replacement password.
+3. Set `CENTRAL_ADMIN_RECOVERY_OVERRIDE=true`.
+4. Recreate the Unicron container with `docker compose --env-file .env up -d`.
+5. Sign in and complete the required password-change flow.
+6. Set `CENTRAL_ADMIN_RECOVERY_OVERRIDE=false` again.
+7. Recreate the Unicron container again.
+
+Recovery mode marks the admin profile with `requiresPasswordChange=true`, so the
+replacement password is temporary until the first successful sign-in.
+
+## Ports
+
+Unicron publishes two public host ports:
+
+- `UNICRON_APP_PORT`: browser and API access to `/unicron`
+- `UNICRON_AGENT_MTLS_PORT`: Unicron-agent mTLS enrollment and traffic
+
+Both values must be non-empty integer TCP ports from `1` through `65535`. Do not
+include protocols, hostnames, paths, spaces, or port ranges.
+
+To change the browser/API port, change `UNICRON_APP_PORT` in `.env` to the
+value you want.
+
+To change the Unicron-agent mTLS port, change `UNICRON_AGENT_MTLS_PORT` in
+`.env` to the value you want.
+
+## Local Unicron-agent Containers and Persistence
+
+Unicron does not automatically create a local Unicron-agent container. It
+generates an enrollment command, and you must run that command explicitly.
+
+The generated local Unicron-agent command uses Docker directly. A standalone
+`docker run` Unicron-agent is not managed by this Compose file, so
+`docker compose ps`, `docker compose restart`, and `docker compose down` only
+manage Unicron.
+
+`docker compose down` manages the `logforge-unicron-network`, not standalone
+Unicron-agent containers. If unmanaged Unicron-agent containers are still
+attached, network removal can fail; if the network is removed and later
+recreated, those containers may need to be restarted, reconnected, or
+re-enrolled.
+
+The `unicron-data` volume stores the auth database, internal generated secrets,
+CA material, and Unicron state. Deleting it resets Unicron. Existing
+Unicron-agent instances enrolled against the old CA or Unicron identity will
+fail and must be re-enrolled with a newly generated command.
+
+If a Unicron-agent container or its Docker volume is deleted while
+`unicron-data` is kept, re-run the current enrollment command from Unicron to
+repair that Unicron-agent instance.
+
+Container state and Unicron-agent state are separate. A Unicron-agent container
+can be running while Unicron reports that Unicron-agent as offline or unhealthy.
+
+## Health Checks
+
+Verify Unicron container health, UI/API login, and Unicron-agent status
+separately:
+
+```sh
+docker compose ps
+docker compose ps unicron
+docker compose logs unicron
+```
+
+Docker health reports whether the Unicron container is ready. It should fail
+when required internal services cannot bootstrap, including `central-auth`.
+
+UI reachability only confirms that the browser/API endpoint is available:
+
+```text
+https://localhost:${UNICRON_APP_PORT}/unicron
+```
+
+It does not prove that local or remote Unicron-agent instances are enrolled,
+connected, or healthy. Check Unicron-agent status in the product UI/API after
+confirming that login works.
+
+For unrecoverable configuration errors, expect either a non-zero container exit
+or an `unhealthy` status with an actionable log message. Fix the `.env` value,
+then recreate the Unicron container.

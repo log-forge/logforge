@@ -1,97 +1,132 @@
-LogForge Core Source-Available License (Non-Commercial/Home Use)
+LogForge Unicron Proprietary License
 
-IMPORTANT: READ CAREFULLY. By installing, accessing, or using the Software (as defined below), you agree to be bound by this License. If you do not agree, do not install, access, or use the Software.
+Copyright (c) 2026 LogForge. All rights reserved.
+
+IMPORTANT: READ CAREFULLY. By installing, accessing, running, or using Unicron,
+Unicron-agent, or any related LogForge software, documentation, Docker images,
+repository materials, services, or artifacts, you agree to be bound by this
+License. If you do not agree, do not install, access, run, or use them.
 
 1. Definitions
 
-1.1 "Core Software" means the source code, models, and migrations located in the repository https://github.com/log-forge/logforge-core
- (the “LogForge Core Repository”), including its backend and frontend components.
-1.2 "Non-Core Software" means any other repositories, components, modules, or artifacts published under the GitHub organization log-forge
-, and any container images published under the Docker Hub namespaces logforge/* or madanb13/*, other than the Core Software.
-1.3 "Software" means collectively the Core Software, Non-Core Software, Docker images, and any related components, modules, or services provided by Licensor.
-1.4 "You" means the individual or legal entity exercising rights under this License.
+1.1 "Licensor" means LogForge.
 
-2. Grant (Source-Available, Non-Commercial/Home Use)
+1.2 "Software" means Unicron, Unicron-agent, and all related LogForge source
+code, object code, binaries, Docker images, container images, configuration,
+models, migrations, documentation, services, modules, updates, patches, and
+artifacts made available by Licensor.
 
-Subject to your compliance with this License, Licensor grants you a limited, non-exclusive, non-transferable, revocable license to:
-(a) access, view, and audit the Core Software source code;
-(b) use and run the Core Software for personal, home, educational, or internal evaluation purposes only; and
-(c) make minimal local modifications strictly for the purposes in (b), provided you do not distribute or deploy such modifications to third parties.
+1.3 "You" means the individual or legal entity installing, accessing, running,
+or using the Software.
 
-This License does NOT permit:
+2. Ownership
 
-any Commercial Use (defined in Section 5);
+The Software is owned by Licensor and is licensed, not sold. Licensor and its
+licensors retain all rights, title, and interest in and to the Software,
+including all intellectual property rights. No rights are granted except as
+expressly stated in this License or in a separate written agreement with
+Licensor.
 
-redistribution, sublicensing, hosting, or making the Core Software available to any third party;
+3. Limited Authorization
 
-creating, publishing, or distributing derivative works of the Core Software;
+You may use the Software only as expressly authorized by Licensor in writing,
+through a valid paid or trial agreement, or through published LogForge product
+terms and deployment instructions that apply to your use.
 
-using the Core Software to train or develop competing services;
-
-publishing benchmarks or performance results without prior written consent;
-
-removing, obscuring, or altering any copyright, trademark, or attribution notices.
-
-3. Ownership
-
-The Software is licensed, not sold. Licensor and its licensors retain all rights, title, and interest in and to the Software, including all intellectual property rights.
+Any access to source code, repository materials, container images, or related
+artifacts does not grant you any right to copy, modify, distribute, sublicense,
+host, resell, or otherwise exploit the Software except as expressly authorized
+by Licensor.
 
 4. Restrictions
 
-You shall not (and shall not permit others to):
-(a) reverse engineer, decompile, or disassemble the Software except to the extent expressly permitted by law;
-(b) use the Software to provide any hosted or managed service;
-(c) circumvent technical limitations;
-(d) use the Software in violation of applicable law;
-(e) distribute any portion of the Software or your modifications;
-(f) use Licensor’s trademarks, logos, or names without prior written permission.
+You shall not, and shall not permit others to:
 
-5. Commercial Use
+(a) copy, reproduce, distribute, publish, sublicense, lease, rent, sell, resell,
+or make the Software available to any third party except as expressly authorized
+by Licensor;
 
-“Commercial Use” means use of the Software by or on behalf of any for-profit, nonprofit, government, or other entity, whether or not for direct revenue, including but not limited to:
+(b) modify, adapt, translate, create derivative works of, or prepare
+improvements based on the Software except as expressly authorized by Licensor;
 
-internal business operations,
+(c) reverse engineer, decompile, disassemble, or attempt to derive source code,
+underlying ideas, algorithms, file formats, models, protocols, or interfaces
+from the Software except to the extent such restriction is prohibited by
+applicable law;
 
-production deployments,
+(d) provide hosted, managed, bureau, outsourcing, or service-provider offerings
+using the Software except as expressly authorized by Licensor;
 
-hosted/managed services,
+(e) remove, obscure, or alter any copyright, trademark, proprietary, security,
+or attribution notices;
 
-or any use intended to provide a service or benefit to third parties.
+(f) use Licensor's names, trademarks, logos, product names, or branding without
+prior written permission from Licensor;
 
-Any Commercial Use of the Software requires a separate written agreement with Licensor. Contact logforge@gmail.com
- for commercial licensing.
+(g) circumvent license keys, account controls, technical limitations, security
+controls, metering, telemetry, or access restrictions;
 
-6. Term and Termination
+(h) use the Software to develop, train, improve, or operate a competing product,
+service, model, or system;
 
-This License is effective until terminated. It terminates automatically if you breach any term. Upon termination, you must cease all use and destroy all copies of the Software. Sections 3–13 survive termination.
+(i) publish benchmarks, performance results, vulnerability details, or security
+analysis of the Software without prior written permission from Licensor; or
 
-7. Third-Party Components
+(j) use the Software in violation of applicable law.
 
-Third-party components included in or used with the Software may be subject to separate terms. Such terms govern those components.
+5. Third-Party Components
 
-8. Support and Updates
+The Software may include or interoperate with third-party components that are
+subject to separate license terms. Those separate terms govern your use of the
+third-party components. Nothing in this License limits any rights you may have
+under those third-party terms.
 
-Licensor is under no obligation to provide support, updates, or maintenance unless set forth in a separate written agreement.
+6. Confidentiality
+
+Any non-public Software, documentation, roadmap information, security
+information, credentials, license keys, or other information provided by
+Licensor is confidential. You shall not disclose such information to any third
+party without Licensor's prior written consent.
+
+7. Support and Updates
+
+Licensor is not obligated to provide support, maintenance, updates, patches, or
+new versions unless required by a separate written agreement with Licensor.
+
+8. Term and Termination
+
+This License is effective until terminated. It terminates automatically if you
+breach any term. Upon termination, you must immediately stop using the Software
+and destroy all copies in your possession or control. Sections 2, 4, 6, 8, 9,
+10, 11, and 12 survive termination.
 
 9. Disclaimer of Warranty
 
-THE SOFTWARE (INCLUDING CORE SOFTWARE, NON-CORE SOFTWARE, DOCKER IMAGES, AND ANY RELATED COMPONENTS, MODULES, OR SERVICES) IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTY OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. LICENSOR SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY
+KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. LICENSOR SPECIFICALLY
+DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, TITLE, AND NON-INFRINGEMENT.
 
 10. Limitation of Liability
 
-TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT WILL LICENSOR OR ITS AFFILIATES BE LIABLE FOR ANY DAMAGES OF ANY KIND, WHETHER DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE, OR FOR ANY LOSS OF PROFITS, REVENUE, DATA, BUSINESS, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THIS LICENSE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-LICENSOR DISCLAIMS ALL LIABILITY AND ASSUMES NO RESPONSIBILITY FOR ANY USE OF THE SOFTWARE.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT WILL LICENSOR OR ITS
+AFFILIATES, SUPPLIERS, OR LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, PUNITIVE, OR OTHER DAMAGES, OR
+FOR ANY LOSS OF PROFITS, REVENUE, DATA, BUSINESS, GOODWILL, OR USE, ARISING
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THIS LICENSE, EVEN IF ADVISED OF
+THE POSSIBILITY OF SUCH DAMAGES.
 
-11. Confidentiality
+11. Patents
 
-Any non-public information provided by Licensor in connection with the Software is confidential. You shall not disclose it to any third party without Licensor’s prior written consent.
+This License does not grant any rights, licenses, or immunities under any
+patents owned or controlled by Licensor or its licensors.
 
-12. Patents
+12. General
 
-This License does not grant any rights, licenses, or immunities under any patents owned or controlled by Licensor or its licensors.
+This License is governed by the laws of the jurisdiction of Licensor's
+principal place of business, excluding conflict-of-laws rules. Venue and
+jurisdiction lie exclusively in courts located in that jurisdiction. This
+License is the entire agreement regarding the Software unless superseded by a
+separate written agreement signed by Licensor.
 
-13. General
-
-This License is governed by the laws of the jurisdiction of Licensor’s principal place of business, excluding conflict-of-laws rules. Venue and jurisdiction lie exclusively in courts located in that jurisdiction. This is the entire agreement regarding the Software and supersedes all prior agreements.
-
-For commercial licensing inquiries: logforge@gmail.com
+For licensing inquiries, contact logforge@gmail.com.
