@@ -22,9 +22,8 @@ delays. AI-assisted operations can turn live Docker context into reports,
 incident investigation, and scoped remediation guidance while keeping the
 control plane self-hosted.
 
-**Source available:** Unicron source is available at
-[log-forge/unicron-source](https://github.com/log-forge/unicron-source). It is
-licensed separately under proprietary/source-available terms.
+**Open Source:** Unicron source is available at
+[log-forge/unicron-source](https://github.com/log-forge/unicron-source).
 
 Learn more on the [LogForge website](https://www.logforge.dev/).
 
