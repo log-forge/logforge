@@ -9,7 +9,7 @@
 
   <Icon>https://www.logforge.dev/assets/logforge-Icon-transparent-512x512.png</Icon>
   <WebUI>https://[IP]:[PORT:443]/unicron</WebUI>
-  <Overview>Self-hosted Docker monitoring and control with real-time logs, metrics, events, alerts, notifications, file access, and guarded remediation.</Overview>
+  <Overview>All in one UI, for Docker. Real-time logs, Interactive terminals, Custom alerts/notifications/Automations, File system access.</Overview>
   <Support>https://github.com/log-forge/logforge/discussions</Support>
   <Project>https://www.logforge.dev/</Project>
   <TemplateURL>https://raw.githubusercontent.com/log-forge/logforge/main/templates/logforge-unicron.xml</TemplateURL>
