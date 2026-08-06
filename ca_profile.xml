@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CommunityApplications>
-  <Profile>
-    LogForge maintains Unicron, a self-hosted Docker monitoring and control
-    appliance. Use GitHub Discussions for installation help, operational
-    questions, and Community Apps template support.
-  </Profile>
+  <Profile>All in one UI, for Docker. Real-time logs, Interactive terminals, Custom alerts/notifications/Automations, File system access.</Profile>
   <Icon>https://www.logforge.dev/assets/logforge-Icon-transparent-512x512.png</Icon>
   <WebPage>https://www.logforge.dev/</WebPage>
   <Forum>https://github.com/log-forge/logforge/discussions</Forum>
