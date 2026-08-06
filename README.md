@@ -71,6 +71,38 @@ Then open:
 https://localhost:8444/unicron
 ```
 
+### Unraid Community Apps
+
+Install **LogForge Unicron** from the Unraid Apps tab. The template stores
+durable state under `/mnt/user/appdata/logforge-unicron`, publishes the browser
+UI on HTTPS port `8444`, and publishes the agent mTLS endpoint on port `9443`.
+If either host port changes during installation, update its matching advanced
+`Public` port variable to the same value.
+
+The container uses an internally generated certificate authority. Your browser
+may show a certificate warning until you trust that authority or configure a
+trusted reverse proxy.
+
+The Community Apps template starts the appliance on Unraid's normal bridge
+network. Before enrolling an agent for the same Unraid host, create the shared
+network and connect the running appliance with its expected DNS alias:
+
+```sh
+docker network inspect logforge-unicron-network >/dev/null 2>&1 || \
+  docker network create logforge-unicron-network
+docker network inspect logforge-unicron-network \
+  --format '{{range .Containers}}{{println .Name}}{{end}}' | \
+  grep -Fxq LogForge-Unicron || \
+  docker network connect \
+    --alias unicron.central \
+    logforge-unicron-network \
+    LogForge-Unicron
+```
+
+Then choose the local-host enrollment option in Unicron. Its generated agent
+command joins `logforge-unicron-network` and reaches the appliance through
+`https://unicron.central/unicron`.
+
 ## What You Get
 
 The free self-hosted product includes:

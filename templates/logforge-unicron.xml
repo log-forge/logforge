@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>LogForge-Unicron</Name>
+  <Repository>logforge/unicron:latest</Repository>
+  <Registry>https://hub.docker.com/r/logforge/unicron</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+
+  <Icon>https://www.logforge.dev/assets/logforge-Icon-transparent-512x512.png</Icon>
+  <WebUI>https://[IP]:[PORT:443]/unicron</WebUI>
+  <Overview>Self-hosted Docker monitoring and control with real-time logs, metrics, events, alerts, notifications, file access, and guarded remediation.</Overview>
+  <Support>https://github.com/log-forge/logforge/discussions</Support>
+  <Project>https://www.logforge.dev/</Project>
+  <TemplateURL>https://raw.githubusercontent.com/log-forge/logforge/main/templates/logforge-unicron.xml</TemplateURL>
+  <ReadMe>https://github.com/log-forge/logforge#readme</ReadMe>
+
+  <Category>Tools:System</Category>
+  <ExtraSearchTerms>docker monitoring logs metrics alerts notifications remediation observability</ExtraSearchTerms>
+  <Requires>Docker socket access is required. The included README describes the one-time Docker network setup needed before enrolling an agent for this Unraid host.</Requires>
+  <Changes>2026-08-06: Initial Unraid Community Apps template.</Changes>
+  <MinVer>6.12</MinVer>
+  <License>Apache-2.0</License>
+
+  <ExtraParams>--restart=unless-stopped --read-only --tmpfs=/tmp:rw,nosuid,nodev,mode=1777,size=256m --tmpfs=/run:rw,nosuid,nodev,mode=755,size=64m --tmpfs=/run/pyinstaller:rw,nosuid,nodev,exec,mode=1777,size=256m --cap-drop=ALL --cap-add=CHOWN --cap-add=DAC_OVERRIDE --cap-add=FOWNER --cap-add=KILL --cap-add=SETGID --cap-add=SETUID --cap-add=NET_BIND_SERVICE --security-opt=no-new-privileges:true --add-host=unicron-stepca:127.0.0.1 --add-host=unicron-stepca-ra:127.0.0.1 --add-host=unicron.central:127.0.0.1</ExtraParams>
+
+  <Config Name="Web UI" Target="443" Default="8444" Mode="tcp" Description="HTTPS port for the LogForge Unicron browser UI and API." Type="Port" Display="always" Required="true" Mask="false"/>
+  <Config Name="Agent mTLS" Target="8443" Default="9443" Mode="tcp" Description="mTLS port used by enrolled Unicron agents." Type="Port" Display="always" Required="true" Mask="false"/>
+  <Config Name="Appdata" Target="/var/lib/unicron" Default="/mnt/user/appdata/logforge-unicron" Mode="rw" Description="Persistent authentication, PKI, database, alerting, and appliance state." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Docker socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Required for Docker inventory, container actions, agent installation, and appliance updates." Type="Path" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="Temporary directory" Target="TMPDIR" Default="/run/pyinstaller" Description="Writable temporary directory inside the read-only appliance container." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
+  <Config Name="Appliance container name" Target="UNICRON_APPLIANCE_CONTAINER_NAME" Default="LogForge-Unicron" Description="Must match the Docker container name so appliance updates can identify this container." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Central hostname" Target="UNICRON_CENTRAL_FQDN" Default="localhost" Description="Hostname included in generated TLS configuration. Change this only when using a stable DNS name for Unicron." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Internal HTTPS port" Target="UNICRON_CENTRAL_PORT" Default="443" Description="Internal HTTPS listener. This must remain aligned with the Web UI container port." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
+  <Config Name="Public HTTPS port" Target="UNICRON_PUBLIC_CENTRAL_PORT" Default="8444" Description="Must match the Web UI host port above when that port is changed." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Internal agent mTLS port" Target="UNICRON_CENTRAL_MTLS_PORT" Default="8443" Description="Internal agent mTLS listener. This must remain aligned with the Agent mTLS container port." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
+  <Config Name="Public agent mTLS port" Target="UNICRON_PUBLIC_CENTRAL_MTLS_PORT" Default="9443" Description="Must match the Agent mTLS host port above when that port is changed." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Data directory" Target="UNICRON_DATA_DIR" Default="/var/lib/unicron" Description="Internal durable data directory." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
+  <Config Name="Local agent Central URL" Target="LOCAL_AGENT_CENTRAL_URL" Default="https://unicron.central/unicron" Description="Internal URL used by an agent enrolled for this Unraid host. Complete the README network setup before local enrollment." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Local agent Docker network" Target="LOCAL_AGENT_DOCKER_NETWORK" Default="logforge-unicron-network" Description="Shared Docker network used by the appliance and an agent enrolled for this Unraid host." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Admin username" Target="CENTRAL_ADMIN_USERNAME" Default="admin" Description="Initial local administrator username. After first boot it is stored in appdata." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Admin password" Target="CENTRAL_ADMIN_PASSWORD" Default="" Description="Optional initial password. Leave blank to generate a random password in the first-start container logs." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="Admin recovery override" Target="CENTRAL_ADMIN_RECOVERY_OVERRIDE" Default="false" Description="Set true only during the documented credential recovery flow, then return it to false." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+</Container>
