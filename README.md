@@ -10,6 +10,21 @@
 
 # LogForge Unicron
 
+### Access from another device
+
+Before first startup, set `UNICRON_CENTRAL_FQDN` in `.env` to the server's
+reachable DNS hostname (for example `logs.example.com`). Configure your DNS
+to resolve that name to the Docker server, then open
+`https://logs.example.com:8444/unicron/` (use your configured app port).
+Compose also maps this name to loopback inside the appliance for internal CA
+communication; this does not restrict the published host ports.
+
+The appliance issues its own certificate. Trust its root CA on client devices
+to validate HTTPS. Merely adding a name to `TRAEFIK_ROUTER_HOSTS` does not
+update the certificate. Existing installations require an appliance release
+supporting hostname-change certificate reissuance before changing this setting.
+Do not delete the data volume or certificate authority to change the hostname.
+
 Self-hosted Docker monitoring and control in one Docker Compose deployment.
 Unicron is a Docker-native dashboard for local and agent-forwarded logs,
 metrics, Docker events, alert rules, notifications, file access, and safe

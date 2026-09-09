@@ -23,6 +23,7 @@ services:
     security_opt:
       - no-new-privileges:true
     extra_hosts:
+      - ${UNICRON_CENTRAL_FQDN:-localhost}:127.0.0.1
       - unicron-stepca:127.0.0.1
       - unicron-stepca-ra:127.0.0.1
       - unicron.central:127.0.0.1
@@ -32,7 +33,7 @@ services:
     environment:
       TMPDIR: /run/pyinstaller
       UNICRON_APPLIANCE_CONTAINER_NAME: unicron-appliance
-      UNICRON_CENTRAL_FQDN: localhost
+      UNICRON_CENTRAL_FQDN: ${UNICRON_CENTRAL_FQDN:-localhost}
       UNICRON_CENTRAL_PORT: "443"
       UNICRON_PUBLIC_CENTRAL_PORT: ${UNICRON_APP_PORT:-8444}
       UNICRON_CENTRAL_MTLS_PORT: "8443"
