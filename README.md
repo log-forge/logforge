@@ -86,6 +86,99 @@ Then open:
 https://localhost:8444/unicron
 ```
 
+### Proxmox: Debian VM quick start
+
+This walkthrough runs Docker **inside a Debian VM** to keep application services
+separate from the Proxmox host. Our local test used
+Debian 13 with 2 vCPUs and 4 GiB RAM (a tested setup, not a sizing guarantee).
+Allow enough disk space for the logs you plan to retain.
+Connect the VM to a network reachable from your browser (for example your LAN
+bridge), give it a stable IP, and install Git plus
+[Docker Engine and the Compose plugin](https://docs.docker.com/engine/install/debian/).
+
+**1. Get the deployment files.** Run these commands in the Debian VM's terminal:
+
+```sh
+git clone https://github.com/log-forge/logforge.git
+cd logforge
+```
+
+**2. Set the address.** Open the existing `.env` file in a text editor and change
+these entries before starting LogForge. Keep the other settings unchanged:
+
+```dotenv
+UNICRON_CENTRAL_FQDN=logs.example.com
+UNICRON_APP_PORT=8444
+UNICRON_AGENT_MTLS_PORT=9443
+```
+
+`logs.example.com` is a placeholder, not a working address. Replace it with a
+name configured in your LAN DNS to point to the **Debian VM's IP**, not the
+Proxmox host's IP. That name must resolve from every device accessing LogForge.
+Use only the hostname in
+the setting, without a scheme, port or path. No Compose edit is needed.
+Allow TCP `8444` from trusted browser clients through any Proxmox/network
+firewalls; allow TCP `9443` from remote agents if used. Use your configured
+ports if different, and prefer LAN/VPN access over public exposure.
+
+**3. Start LogForge.** Run these commands from the cloned `logforge` directory:
+
+```sh
+sudo docker compose pull
+sudo docker compose up -d
+sudo docker compose ps unicron
+```
+
+Wait for the appliance to report `healthy`. On first startup, find the generated
+admin password in `sudo docker compose logs unicron`. Keep those logs private;
+the default username is `admin`, and first login requires a password change.
+
+**4. Open it from your browser.** Use `https://logs.example.com:8444/unicron/`,
+replacing the example name with the one you configured. `localhost` on your
+other device refers to itself, not the VM.
+
+A certificate warning is expected until your client trusts the appliance's CA.
+After startup, run this in the VM to export its **public** root certificate:
+
+```sh
+sudo docker cp unicron-appliance:/var/lib/unicron/pki/trust/root_ca.crt ./logforge-root-ca.crt
+```
+
+Copy that certificate to your browser device through a trusted connection and
+import it using your OS/browser's trusted root CA procedure. Only trust a CA
+from an appliance you control; never copy or share its private keys.
+
+For an existing install, pull the updated image and recreate the service after
+editing `.env`; **keep the data volume**. The appliance updates its server
+certificate while preserving its CA and database. A 404 can indicate that the
+browser hostname does not match the configured name; a timeout calls for checking
+the VM address, published port and firewall path.
+
+Validated locally with Proxmox → Debian VM → Docker: fresh startup, HTTPS/login
+from outside the VM, hostname change and restart. An agent in another VM is a
+**remote agent**: use a reachable Central address and remote enrollment, not the
+same-host Docker network alias. Cross-VM agent enrollment and raw-IP certificate
+access were not part of this test.
+
+#### Running directly on the Proxmox host
+
+Direct-host deployment also passed our local browser/API test with Proxmox VE
+9.2.18 (kernel 7.0.14-16-pve) and Docker Engine 29.8.0 from Docker's official
+Debian repository. Follow the same deployment steps on the host, but point your
+DNS name to the **Proxmox host's IP** and select unused application ports.
+Keep Proxmox's own management port separate.
+
+On this host, the older Debian-packaged Docker 26.1.5 failed because AppArmor
+blocked PostgreSQL Unix sockets. Updating Docker resolved the failure with the
+default AppArmor profile still enabled; do not disable AppArmor as a shortcut.
+Review Docker's installation instructions and existing workloads before changing
+packages on a production host. Docker also changes host firewall rules.
+
+The appliance mounts the Docker socket, giving it control over the host's Docker
+workloads. A Debian VM provides stronger separation from your hypervisor. Our
+test confirmed direct-host login and API access while an existing VM remained
+reachable; it is not a guarantee for every Proxmox version or firewall setup.
+
 ### Unraid Community Apps
 
 Install **LogForge Unicron** from the Unraid Apps tab. The template stores
