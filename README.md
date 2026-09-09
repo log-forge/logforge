@@ -86,17 +86,18 @@ Then open:
 https://localhost:8444/unicron
 ```
 
-### Proxmox: Debian VM quick start
+### Proxmox: Linux VM quick start
 
-This walkthrough runs Docker **inside a Debian VM** to keep application services
-separate from the Proxmox host. Our local test used
-Debian 13 with 2 vCPUs and 4 GiB RAM (a tested setup, not a sizing guarantee).
+This walkthrough runs Docker **inside a Linux VM** to keep application services
+separate from the Proxmox host. Use a Linux distribution supported by Docker
+Engine and an `amd64` or `arm64` environment supported by the LogForge image.
 Allow enough disk space for the logs you plan to retain.
 Connect the VM to a network reachable from your browser (for example your LAN
 bridge), give it a stable IP, and install Git plus
-[Docker Engine and the Compose plugin](https://docs.docker.com/engine/install/debian/).
+[Docker Engine and the Compose plugin](https://docs.docker.com/engine/install/)
+using the instructions for your distribution.
 
-**1. Get the deployment files.** Run these commands in the Debian VM's terminal:
+**1. Get the deployment files.** Run these commands in the Linux VM's terminal:
 
 ```sh
 git clone https://github.com/log-forge/logforge.git
@@ -113,7 +114,7 @@ UNICRON_AGENT_MTLS_PORT=9443
 ```
 
 `logs.example.com` is a placeholder, not a working address. Replace it with a
-name configured in your LAN DNS to point to the **Debian VM's IP**, not the
+name configured in your LAN DNS to point to the **Linux VM's IP**, not the
 Proxmox host's IP. That name must resolve from every device accessing LogForge.
 Use only the hostname in
 the setting, without a scheme, port or path. No Compose edit is needed.
@@ -154,8 +155,10 @@ certificate while preserving its CA and database. A 404 can indicate that the
 browser hostname does not match the configured name; a timeout calls for checking
 the VM address, published port and firewall path.
 
-Validated locally with Proxmox → Debian VM → Docker: fresh startup, HTTPS/login
-from outside the VM, hostname change and restart. An agent in another VM is a
+Tested configuration: Proxmox → Debian 13 VM → Docker, with 2 vCPUs and 4 GiB
+RAM (a tested setup, not a sizing guarantee or a Debian requirement). Fresh
+startup, HTTPS/login from outside the VM, hostname change and restart passed.
+Other distributions were not tested. An agent in another VM is a
 **remote agent**: use a reachable Central address and remote enrollment, not the
 same-host Docker network alias. Cross-VM agent enrollment and raw-IP certificate
 access were not part of this test.
@@ -175,7 +178,7 @@ Review Docker's installation instructions and existing workloads before changing
 packages on a production host. Docker also changes host firewall rules.
 
 The appliance mounts the Docker socket, giving it control over the host's Docker
-workloads. A Debian VM provides stronger separation from your hypervisor. Our
+workloads. A separate Linux VM provides stronger separation from your hypervisor. Our
 test confirmed direct-host login and API access while an existing VM remained
 reachable; it is not a guarantee for every Proxmox version or firewall setup.
 
