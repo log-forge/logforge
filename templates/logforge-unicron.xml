@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container version="2">
   <Name>LogForge-Unicron</Name>
-  <Repository>logforge/unicron:latest</Repository>
+  <Repository>logforge/unicron:unraid</Repository>
   <Registry>https://hub.docker.com/r/logforge/unicron</Registry>
   <Network>bridge</Network>
   <Shell>bash</Shell>
@@ -33,6 +33,7 @@
 
   <Config Name="Temporary directory" Target="TMPDIR" Default="/run/pyinstaller" Description="Writable temporary directory inside the read-only appliance container." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
   <Config Name="Appliance container name" Target="UNICRON_APPLIANCE_CONTAINER_NAME" Default="LogForge-Unicron" Description="Must match the Docker container name so appliance updates can identify this container." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Unraid update channel" Target="UNICRON_UPDATE_IMAGE_REF" Default="logforge/unicron:unraid" Description="Keep appliance updates on the stable Unraid image channel." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
   <Config Name="Central hostname" Target="UNICRON_CENTRAL_FQDN" Default="localhost" Description="Hostname included in generated TLS configuration. Change this only when using a stable DNS name for Unicron." Type="Variable" Display="advanced" Required="true" Mask="false"/>
   <Config Name="Internal HTTPS port" Target="UNICRON_CENTRAL_PORT" Default="443" Description="Internal HTTPS listener. This must remain aligned with the Web UI container port." Type="Variable" Display="advanced-hide" Required="true" Mask="false"/>
   <Config Name="Public HTTPS port" Target="UNICRON_PUBLIC_CENTRAL_PORT" Default="8444" Description="Must match the Web UI host port above when that port is changed." Type="Variable" Display="advanced" Required="true" Mask="false"/>
