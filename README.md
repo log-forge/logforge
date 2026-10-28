@@ -427,3 +427,10 @@ or an `unhealthy` status with an actionable log message. Fix the `.env` value,
 then recreate the Unicron container.
 
 </details>
+
+
+## Automatic local monitoring in 3.0.1
+
+The local collector now starts inside the LogForge appliance. New installations do not need to enroll or run a separate local agent, or create a Docker network for it. The first-run guide confirms local readiness and then explains optional remote enrollment under Settings → Agents. Existing local agents are reused to avoid duplicate monitoring. Remote agents still require enrollment and manual updates.
+
+For file-tail collection, add a read-only host-root mapping (`/:/host/root:ro`) alongside the existing Docker socket mapping. The current Compose file and Unraid template include it. Existing Unraid containers do not automatically gain a new path mapping when the image updates: edit the container and add Host root `/` → `/host/root`, read-only. The collector uses memory queues and retries when Docker is unavailable. Persistent identity lives in appdata. Check Settings → Agents and the setup status if monitoring is not ready.
