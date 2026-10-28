@@ -431,6 +431,8 @@ then recreate the Unicron container.
 
 ## Automatic local monitoring in 3.0.1
 
+The Unraid template follows `logforge/unicron:unraid`, a moving channel for tested releases. Its internal update setting follows the same channel. You do not need to change a version number for each update. The current channel contains software version 3.0.1; the version in telemetry describes the actual software, independently of the Docker tag. Existing `latest` installs also receive this build, and the `3.0.0` compatibility tag has been updated to the same tested image. Keep appdata when updating.
+
 The local collector now starts inside the LogForge appliance. New installations do not need to enroll or run a separate local agent, or create a Docker network for it. The first-run guide confirms local readiness and then explains optional remote enrollment under Settings → Agents. Existing local agents are reused to avoid duplicate monitoring. Remote agents still require enrollment and manual updates.
 
 For file-tail collection, add a read-only host-root mapping (`/:/host/root:ro`) alongside the existing Docker socket mapping. The current Compose file and Unraid template include it. Existing Unraid containers do not automatically gain a new path mapping when the image updates: edit the container and add Host root `/` → `/host/root`, read-only. The collector uses memory queues and retries when Docker is unavailable. Persistent identity lives in appdata. Check Settings → Agents and the setup status if monitoring is not ready.
