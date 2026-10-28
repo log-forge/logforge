@@ -47,6 +47,7 @@ services:
     volumes:
       - unicron-data:/var/lib/unicron
       - /var/run/docker.sock:/var/run/docker.sock
+      - /:/host/root:ro
     networks:
       unicron:
         aliases:
