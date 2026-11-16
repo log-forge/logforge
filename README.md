@@ -214,6 +214,10 @@ Then choose the local-host enrollment option in Unicron. Its generated agent
 command joins `logforge-unicron-network` and reaches the appliance through
 `https://unicron.central/unicron`.
 
+## One-Click Deploy
+
+[![Deploy on RepoCloud](https://d16t0pc4846x52.cloudfront.net/deploylobe.svg)](https://repocloud.io/details/LogForge/)
+
 ## What You Get
 
 The free self-hosted product includes:
